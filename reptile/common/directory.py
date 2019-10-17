@@ -16,6 +16,11 @@ class Directory(object):
     def __init__(self):
         # 获取默认输出目录
         self.__getRootDir__()
+        # 初始化
+        self.__init_soft_default__()
+        self.__init_user_default__()
+
+    def __init_soft_default__(self):
         self.reptile_dir = path.join(self.base_dir, 'reptile')
         self.log_dir = path.join(self.base_dir, 'logs')
         if not path.exists(self.log_dir):
@@ -35,6 +40,9 @@ class Directory(object):
         if not path.exists(self.temp_dir):
             os.makedirs(self.temp_dir)
 
+    def __init_user_default__(self):
+        self.user_home = path.expanduser('~')
+
     '''
     获取根目录
     '''
@@ -44,5 +52,6 @@ class Directory(object):
             self.base_dir = path.dirname(setup_path)
         else:
             self.base_dir = path.dirname(sys.argv[0])
+
 
 directory = Directory()
