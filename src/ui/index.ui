@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>index</class>
+ <widget class="QMainWindow" name="index">
+  <property name="windowModality">
+   <enum>Qt::WindowModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>漫画嗅探器</string>
+  </property>
+  <widget class="QWidget" name="centralwidget"/>
+  <action name="action_tuichu">
+   <property name="text">
+    <string>退出</string>
+   </property>
+  </action>
+  <action name="action_shezhi">
+   <property name="text">
+    <string>设置</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
