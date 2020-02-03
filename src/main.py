@@ -6,13 +6,13 @@
 import sys
 from PyQt5.QtWidgets import QApplication
 
-from windows import Reptile
+from windows import Index
 
 '''
 程序主入口
 '''
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    reptile = Reptile()
+    reptile = Index()
     reptile.show()
     sys.exit(app.exec_())
