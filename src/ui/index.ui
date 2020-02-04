@@ -35,7 +35,7 @@
       <height>571</height>
      </rect>
     </property>
-    <widget class="QWidget" name="tab">
+    <widget class="QWidget" name="tab_search">
      <attribute name="title">
       <string>搜索</string>
      </attribute>
@@ -61,6 +61,46 @@
       <property name="text">
        <string>搜索</string>
       </property>
+     </widget>
+     <widget class="QGroupBox" name="search_result">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>190</y>
+        <width>761</width>
+        <height>311</height>
+       </rect>
+      </property>
+      <property name="hidden" stdset="0">
+       <bool>true</bool>
+      </property>
+      <layout class="QHBoxLayout" name="search_result_layout">
+       <property name="hidden" stdset="0">
+        <string>true</string>
+       </property>
+       <item>
+        <widget class="QTreeWidget" name="tree_search">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <column>
+          <property name="text">
+           <string>搜索列表</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_image">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
