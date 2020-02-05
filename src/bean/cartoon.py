@@ -15,26 +15,20 @@ class Cartoon(object):
         self._url = url
         self._image_url = image_url
 
-    @property
     def name(self):
         return self._name
 
-    @name.setter
-    def name(self, new_name):
+    def set_name(self, new_name):
         self._name = new_name
 
-    @property
     def url(self):
         return self._url
 
-    @url.setter
-    def url(self, new_url):
+    def set_url(self, new_url):
         self._url = new_url
 
-    @property
     def image_url(self):
         return self._image_url
 
-    @image_url.setter
-    def image_url(self, new_image_url):
+    def set_image_url(self, new_image_url):
         self._image_url = new_image_url

@@ -15,26 +15,20 @@ class Retrieval(object):
         self._msg = msg
         self._res = res
 
-    @property
     def code(self):
         return self._code
 
-    @code.setter
-    def code(self, new_code):
+    def set_code(self, new_code):
         self._code = new_code
 
-    @property
     def msg(self):
         return self._msg
 
-    @msg.setter
-    def msg(self, new_msg):
+    def set_msg(self, new_msg):
         self._msg = new_msg
 
-    @property
     def res(self):
         return self._res
 
-    @res.setter
-    def res(self, new_res):
+    def set_res(self, new_res):
         self._res = new_res
