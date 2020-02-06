@@ -7,7 +7,8 @@ from .dmzj import Dmzj
 from .tencent import Tencent
 
 
-resolvers = []
-
-resolvers.append(Dmzj())
-resolvers.append(Tencent())
+class Resolver(object):
+    def __init__(self):
+        dmzj = Dmzj()
+        tencent = Tencent()
+        self.resolvers = {dmzj.key(): dmzj, tencent.key(): tencent}

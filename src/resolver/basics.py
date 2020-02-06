@@ -4,6 +4,7 @@
 # @file basics.py
 
 import abc
+import utils
 from bean import Retrieval
 
 
@@ -11,6 +12,9 @@ class Basics(metaclass=abc.ABCMeta):
 
     def __init__(self, name):
         self.__name__ = name
+
+    def key(self):
+        return utils.md5(self.__name__)
 
     def name(self):
         return self.__name__

@@ -7,7 +7,7 @@ import requests
 from PyQt5.QtWidgets import QMainWindow, QMessageBox, QTreeWidget, QTreeWidgetItem
 from PyQt5.QtGui import QTextCursor, QImage, QPixmap
 from ui import Ui_index
-from resolver import resolvers
+from resolver import Resolver
 
 
 class Index(QMainWindow, Ui_index):
@@ -15,6 +15,7 @@ class Index(QMainWindow, Ui_index):
         super(Index, self).__init__(parent)
         self.setupUi(self)
         self.__init_ui__()
+        self.resolver = Resolver()
 
     def __init_ui__(self):
         self.btn_download.setHidden(True)
@@ -29,7 +30,9 @@ class Index(QMainWindow, Ui_index):
             return
         self.search_result.setHidden(False)
         self.tree_search.clear()
-        for r in resolvers:
+        resolvers = self.resolver.resolvers
+        for key in resolvers:
+            r = resolvers[key]
             item = QTreeWidgetItem()
             item.setText(0, r.name())
 
