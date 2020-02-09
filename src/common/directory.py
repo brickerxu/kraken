@@ -21,16 +21,15 @@ class Directory(object):
         self.__init_user_default__()
 
     def __init_soft_default__(self):
-        self.reptile_dir = path.join(self.base_dir, 'reptile')
         self.log_dir = path.join(self.base_dir, 'logs')
         if not path.exists(self.log_dir):
             os.makedirs(self.log_dir)
         self.config_dir = path.join(self.base_dir, 'config')
         if not path.exists(self.config_dir):
             os.makedirs(self.config_dir)
-        self.reptile_config_path = path.join(self.config_dir, 'reptile.ini')
-        if not path.exists(self.reptile_config_path):
-            file = open(self.reptile_config_path, 'w')
+        self.kraken_config_path = path.join(self.config_dir, 'kraken.ini')
+        if not path.exists(self.kraken_config_path):
+            file = open(self.kraken_config_path, 'w')
             file.close()
         self.data_config_path = path.join(self.config_dir, 'data.ini')
         if not path.exists(self.data_config_path):

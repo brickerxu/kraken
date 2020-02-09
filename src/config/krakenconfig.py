@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 # @author bricker
 # @date 2019/10/17
-# @file reptileconfig.py
+# @file krakenconfig.py
 
 from .config import Config
 from common import directory
@@ -11,9 +11,9 @@ from common import directory
 """
 
 
-class ReptileConfig(Config):
+class KrakenConfig(Config):
     def __init__(self):
-        super(ReptileConfig, self).__init__(directory.reptile_config_path)
+        super(KrakenConfig, self).__init__(directory.kraken_config_path)
         self.SECTION = 'default'
 
     def get_output(self):
@@ -22,4 +22,4 @@ class ReptileConfig(Config):
         return None
 
 
-reptileConfig = ReptileConfig()
+krakenConfig = KrakenConfig()
