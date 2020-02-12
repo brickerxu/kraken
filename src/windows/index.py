@@ -4,10 +4,11 @@
 # @file index.py
 
 import requests
-from PyQt5.QtWidgets import QMainWindow, QMessageBox, QTreeWidget, QTreeWidgetItem
-from PyQt5.QtGui import QTextCursor, QImage, QPixmap
+import service
+from PyQt5.QtWidgets import QMainWindow, QMessageBox, QTreeWidgetItem
+from PyQt5.QtGui import QImage, QPixmap
 from ui import Ui_index
-from resolver import Resolver
+from resolver import resolverManager
 
 
 class Index(QMainWindow, Ui_index):
@@ -15,7 +16,7 @@ class Index(QMainWindow, Ui_index):
         super(Index, self).__init__(parent)
         self.setupUi(self)
         self.__init_ui__()
-        self.resolver = Resolver()
+        self.resolverManager = resolverManager
 
     def __init_ui__(self):
         self.btn_download.setHidden(True)
@@ -30,11 +31,12 @@ class Index(QMainWindow, Ui_index):
             return
         self.search_result.setHidden(False)
         self.tree_search.clear()
-        resolvers = self.resolver.resolvers
+        resolvers = self.resolverManager.resolvers
         for key in resolvers:
             r = resolvers[key]
             item = QTreeWidgetItem()
             item.setText(0, r.name())
+            item.setText(1, key)
 
             result = r.search(keyword)
             cartoons = result.res()
@@ -42,8 +44,9 @@ class Index(QMainWindow, Ui_index):
                 child = QTreeWidgetItem()
                 child.setText(0, c.name())
                 child.setToolTip(0, c.name())
-                child.setText(1, c.url())
-                child.setText(2, c.image_url())
+                child.setText(1, c.key())
+                child.setText(2, c.url())
+                child.setText(3, c.image_url())
                 item.addChild(child)
 
             self.tree_search.insertTopLevelItem(0, item)
@@ -52,8 +55,8 @@ class Index(QMainWindow, Ui_index):
         self.btn_download.setHidden(False)
         header = {'Referer': 'https://www.dmzj.com/dynamic/o_search/index', 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36'}
         item = self.tree_search.currentItem()
-        if item.text(2):
-            image_url = item.text(2)
+        if item.text(3):
+            image_url = item.text(3)
             res = requests.get(image_url, headers=header)
             img = QImage.fromData(res.content)
             self.label_image.setScaledContents(True)
@@ -61,4 +64,7 @@ class Index(QMainWindow, Ui_index):
 
     def click_download(self):
         item = self.tree_search.currentItem()
-        print('0->%s, 1->%s, 2->%s'%(item.text(0), item.text(1), item.text(2)))
+        parent = item.parent()
+        if parent is None:
+            return
+        service.download(parent.text(1), item.text(2))

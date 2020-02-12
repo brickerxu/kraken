@@ -35,3 +35,6 @@ class Dmzj(Basics):
             cartoon = Cartoon(name, url, image_url)
             cartoons.append(cartoon)
         return cartoons
+
+    def crawl_parser(self, content):
+        print(content)

@@ -35,3 +35,13 @@ class Tencent(Basics):
             cartoon = Cartoon(name, url, image_url)
             cartoons.append(cartoon)
         return cartoons
+
+    def crawl_parser(self, content):
+        select = etree.HTML(content)
+        items = select.xpath('//ol[contains(@class, "chapter-page-all")]/li/p/span')
+        print(len(items))
+        for item in items:
+            href = item.xpath('a[1]/@href')[0].strip()
+            cl = item.xpath('i[1]/@class')[0]
+            print(href)
+            print(cl)

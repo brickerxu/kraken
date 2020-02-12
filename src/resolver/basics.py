@@ -4,6 +4,7 @@
 # @file basics.py
 
 import abc
+import requests
 import utils
 from bean import Retrieval
 
@@ -45,4 +46,17 @@ class Basics(metaclass=abc.ABCMeta):
     '''
     @abc.abstractmethod
     def search_parser(self, content):
+        pass
+
+    def crawl(self, url):
+        if not url:
+            return None
+        html = requests.get(url)
+        if html is None:
+            return None
+        if html.status_code == 200:
+            xmls = self.crawl_parser(html.content)
+
+    @abc.abstractmethod
+    def crawl_parser(self, content):
         pass
